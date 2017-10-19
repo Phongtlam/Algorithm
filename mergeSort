@@ -11,6 +11,15 @@ var mergeSort = (array) => {
   return merge(mergeSort(left), mergeSort(right));
 };
 
+// This merge function is the meat of the problem.
+// After we get two individual halves, we need to compare the first indices of
+// each half. The smaller one will go in first and so on. When both halves are done
+// we need to add the leftover onto the res array.
+
+// The 'gotcha' here is that we need to do the concatenation at the end of each
+// merge operation. Merge sort is a bit easier to write than quickSort, yet more
+// difficult in understanding what's going on. 
+
 function merge(left, right) {
   var res = [];
   var l = 0;
