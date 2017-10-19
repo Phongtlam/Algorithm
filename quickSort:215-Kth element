@@ -17,6 +17,7 @@ var quickSort = (array, low = 0, high = array.length-1) => {
 // This particular scheme - Lomuto's partition scheme - uses a pivot point chosen at random. This is for performance
 // purpose. You can just set the pivot point as the last index too. However, doing so
 // will yield a slower run time if the array is already sorted.
+
 var partition = (array, low, high) => {
   if (array.length <= 1 && low > high) return array;
   var pivot = Math.floor(Math.random()*(high-low)) + low;
