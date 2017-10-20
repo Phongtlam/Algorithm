@@ -5,6 +5,7 @@
 
 // Fibonacci sequence using recursion. This is however not performant without using a
 // memoize function.
+
 var fibonacciRecursive = (num) => {
   if (num <= 1) return 1;
 
@@ -13,6 +14,7 @@ var fibonacciRecursive = (num) => {
 
 // We utilize a hash table for lookup here. If the value is already solved, we can
 // instantly return that value rather than having to recalculate the output
+
 var fibonacciMemoize = (num, memo) => {
   memo = memo || {};
 
@@ -55,6 +57,7 @@ var fibonacciDPIterative = (n) => {
 
 // This problem is similar to Fibonacci sequence. We need to initialize the starting
 // array with [1,2] instead of [0,1].
+
 var climbStairs = (n) => {
   if (n < 3) return n;
   var first = 1;

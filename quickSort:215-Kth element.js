@@ -56,6 +56,7 @@ var swap = (array, i, j) => {
 // The array is 'shrunk' down based on the output of the partition. If it is smaller
 // than the target result index, we know we can trim up the front, and if it is larger
 // than the result index, we know we can trim down the back.
+
 var findKthLargest = (nums, k) => {
   if (nums.length <= 1) return nums[0];
   var res = nums.length - k;
