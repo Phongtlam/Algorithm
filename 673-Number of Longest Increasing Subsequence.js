@@ -30,40 +30,36 @@
 // because at that point in time in the past, that value is in fact, 1 smaller.
 
 var findNumberOfLIS = function(nums) {
-  var res = [];
-  var countArr = [];
+    if (nums.length === 0) return 0;
+    var res = [];
+    var count = [];
 
-  // Initializing two arrays
-  for (var i=0; i<nums.length; i++) {
-    res.push(1);
-    countArr.push(1);
-  }
-
-  for (var i=1; i<nums.length; i++) {
-    for (var j=0; j<i; j++) {
-        if (nums[i] > nums[j]) {
-          // checking if the chain has appeared before, to increment the count
-          if (res[i] === res[j] + 1) {
-            countArr[i] += countArr[j];
-          }
-          // initialize the count if the chain is made fresh
-          if (res[i] < res[j] + 1) {
-            res[i] = res[j]+1;
-            countArr[i] = countArr[j];
-          }
+    // initialize 2 arrays
+    for (var i=0; i<nums.length; i++) {
+        res.push(1);
+        count.push(1);
+    }
+    for (i=1; i<nums.length; i++) {
+        for (var j=0; j<i; j++) {
+            if (nums[i] > nums[j]) {
+                if (res[i] < res[j]+1) {
+                    res[i] = res[j]+1;
+                    count[i] = count[j];
+                } else if (res[i] === res[j]+1) {
+                    count[i] += count[j];
+                }
+            }
         }
     }
-  }
-  var max = 0;
-  var count = 0;
-  for (var i=0; i<res.length; i++) {
-    if (max === res[i]) count += countArr[i];
-    if (max < res[i]) {
-      max = res[i]
-      count = countArr[i]
+    var max = 0;
+    var final = 0;
+    for (i=0; i<res.length; i++) {
+        if (max < res[i]) {
+            max = res[i];
+            final = count[i];
+        } else if (max === res[i]) {
+            final += count[i];
+        }
     }
-  }
-  return count;
+    return final;
 };
-
-console.log(findNumberOfLIS([1,3,5,4,7]))
