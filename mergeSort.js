@@ -18,7 +18,7 @@ var mergeSort = (array) => {
 
 // The 'gotcha' here is that we need to do the concatenation at the end of each
 // merge operation. Merge sort is a bit easier to write than quickSort, yet more
-// difficult in understanding what's going on. 
+// difficult in understanding what's going on.
 
 function merge(left, right) {
   var res = [];
@@ -31,5 +31,5 @@ function merge(left, right) {
       res.push(right[r++]);
     }
   }
-  return res.concat(left.slice(l)).concat(right.slice(r));;
+  return res.concat(left.slice(l)).concat(right.slice(r));
 }
