@@ -58,4 +58,4 @@ var leastInterval = function(tasks, n) {
     return result;
 };
 // console.log(leastInterval(["A","A","A","A","A","A","B","C","D","E","F","G"], 2))
-console.log(leastInterval(["A","A","A","B","B","B"], 2)) //8
+// console.log(leastInterval(["A","A","A","B","B","B"], 2)) //8

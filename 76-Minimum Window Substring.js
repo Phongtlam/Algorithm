@@ -72,9 +72,10 @@ var getShortestUniqueSubstring = function(arr, str) {
   // start iterate through the str
   for (i=0; i<str.length; i++) {
 
-    // if it is in arrMap, thats a possible candidate 
+    // if it is in arrMap, thats a possible candidate
     if (arrMap[str[i]] !== undefined) {
       if (strMap[str[i]] !== undefined) {
+        // increment count if strMap[str[i]] is smaller than arrMap because the target has not been found
         if (strMap[str[i]] < arrMap[str[i]]) {
           count++;
         }
