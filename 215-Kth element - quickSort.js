@@ -20,9 +20,9 @@ var quickSort = (array, low = 0, high = array.length-1) => {
 
 var partition = (array, low, high) => {
   if (array.length <= 1 && low > high) return array;
-  var pivot = Math.floor(Math.random()*(high-low)) + low;
-  swap(array, pivot, high);
-  pivot = high;
+  // var pivot = Math.floor(Math.random()*(high-low)) + low;
+  // swap(array, pivot, high);
+  let pivot = high;
   var i = low;
   while (low < high) {
     if (array[low] <= array[pivot]) {

@@ -21,12 +21,12 @@ var wordPattern = function(pattern, str) {
           if (hashPat[pattern[i]] !== str[i]) return false;
         } else {
             // pattern with NO word
-            if (hashStr[str[i]] !== undefined) {
+            if (hashStr[str[i]]) {
                /// seen word before
               return false;
             } else {
                 // new pattern new word
-              hashStr[str[i]] = i;
+              hashStr[str[i]] = true;
             }
             hashPat[pattern[i]] = str[i];
         }

@@ -85,7 +85,6 @@ var getShortestUniqueSubstring = function(arr, str) {
         count++;
       }
     }
-
     // if count is the same as length, we know we might have reached the candidate substring
     if (count === arr.length) {
       var t = str.charAt(left);
@@ -93,8 +92,7 @@ var getShortestUniqueSubstring = function(arr, str) {
         if (strMap[t] !== undefined && strMap[t] > arrMap[t]) {
           strMap[t]--;
         }
-        left++;
-        t = str.charAt(left);
+        t = str.charAt(++left);
       }
 
       if (i - left + 1 < minLng) {
@@ -109,4 +107,52 @@ var getShortestUniqueSubstring = function(arr, str) {
 
 // console.log(getShortestUniqueSubstring(['x','y','z'], "xyyzyzyx"))
 // console.log(getShortestUniqueSubstring(['A', 'B', 'C'], "ADOBECODEBANC'")) // BANC
-// console.log(getShortestUniqueSubstring(['A'], 'A'))
+// console.log(getShortestUniqueSubstring(['AA'], 'AA'))
+
+const minWindow = (s, t) => {
+    if (s.length < t.length) return '';
+    let hashT = {};
+    let hashS = {};
+
+    // initialize hashT
+    for (var i=0; i<t.length; i++) {
+      let temp = t.charAt(i);
+      hashT[temp] = hashT[temp] === undefined ? 1 : hashT[temp]+1;
+    }
+    let counter = 0;
+    let left = 0;
+    let min = s.length+1;
+    let res = '';
+    for (i=0; i<s.length; i++) {
+      let char = s.charAt(i)
+      if (hashT[char] !== undefined) {
+        if (hashS[char] !== undefined) {
+          if (hashS[char] < hashT[char]) {
+            counter++;
+          }
+          hashS[char]++;
+        } else {
+          hashS[char] = 1;
+          counter++;
+        }
+      }
+      if (counter === t.length) {
+        var temp = s.charAt(left);
+        while (hashS[temp] === undefined || hashS[temp] > hashT[temp]) {
+          if (hashS[temp] !== undefined && hashS[temp] > hashT[temp]) {
+            hashS[temp]--;
+          }
+          temp = s.charAt(++left);
+        }
+        if (min > i - left + 1) {
+          min = i - left + 1;
+          res = s.substring(left, i+1);
+        }
+      }
+    }
+    console.log(hashS, hashT)
+    return res;
+};
+
+// console.log(minWindow("ADOBECODEBANC", "ABC"))
+// console.log(minWindow('bdab', 'ab'))

@@ -1,0 +1,54 @@
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
+let x = [1,2,3,4,5]
+
+const convert = (array) => {
+  if (array.length === 0) return;
+  let mid = Math.floor(array.length/2);
+  let bst = new TreeNode(array[mid]);
+  bst.left = convert(array.slice(0, mid));
+  bst.right = convert(array.slice(mid+1));
+  return bst;
+}
+
+const sortedListToBST = (head) => {
+  if (!head) return;
+  // let fast = head;
+  // let slow = head;
+  // while (fast.next) {
+  //   fast = fast.next.next;
+  //   slow = slow.next;
+  // }
+  return helper(head, null);
+};
+
+const helper = (head, max) => {
+  if (!head) return;
+  if (head === max) return;
+  let fast = head;
+  let slow = head;
+  while (fast !== max && fast.next !== max) {
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  let bst = new TreeNode(slow.val);
+  bst.left = helper(head, slow);
+  bst.right = helper(slow.next, fast);
+  return bst;
+}
+
+let list = new ListNode(1)
+list.next = new ListNode(2)
+list.next.next = new ListNode(3)
+list.next.next.next = new ListNode(4)
+list.next.next.next.next = new ListNode(5)
+
+console.log(sortedListToBST(list))
