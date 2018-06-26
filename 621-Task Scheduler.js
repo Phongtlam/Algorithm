@@ -26,7 +26,6 @@ var leastInterval = function(tasks, n) {
       cooler[prop] = 0;
     }
     var result = 0;
-    console.log('task count', taskCnt)
 
     while (Object.keys(taskCnt).length > 0) {
       var currTask = undefined;
