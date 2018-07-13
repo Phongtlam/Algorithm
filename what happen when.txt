@@ -1,0 +1,23 @@
+What happens when you type google.com into your browser's address box and press enter?
+
+1. Parse URL
+	Check protocol: http or https
+	the slash / is used to determine main index page
+2. Browser check URL or search term, usually feeds into default browser search engine... Yahoo, Google, Bing...
+3. Convert non ascii code 
+4. Check HSTS (HTTP strict transport list) in the browser. Ex: Google put .dev domain in the list
+5. DNS look up cache: browser, local and router then ISP. If not in ISP, ISP does look up recursively through DNS, a few diff domain lvl,
+	Top level domain: .com/.net 
+	Second level domain: google.com, yelp.com
+	Third lvl domain: map.blah.com
+	Reason: look for IP address
+6. Check port from URL, 80 for HTTP and 443 for HTTPS - request TCP socket stream
+7. Client sends out SYN(sync) and server responds with ACK(acknowledge)
+8. Client sends transport layer security message (TLS) with cipher algo/crypto algo to server to initiate TLS handshake
+10. HTTP/HTTPS protocol established
+	Server resp can contain:
+	- response code: 1xx - info, 2xx - good, 3xx - redirect, 4xx - bad by client, 5xx - bad by server
+11. HTTP requests by the client is broken down into GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, or TRACE
+	Usually first request is a GET request, so server will respond with downloads for current page structure (HTML, CSS, JS, images, etc)
+12. Client receives and parses the resources, build the DOM tree
+13. Rendering the page and receive user interactions

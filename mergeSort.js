@@ -33,3 +33,57 @@ function merge(left, right) {
   }
   return res.concat(left.slice(l)).concat(right.slice(r));
 }
+
+// Merge sort types of problems
+
+// Merge 2 sorted lists
+
+const mergeSortedLists = (arr1, arr2) => {
+  let l = 0;
+  let r = 0;
+  let res = [];
+  while (l < arr1.length && r < arr2.length) {
+    if (arr1[l] < arr2[r]) {
+      res.push(arr1[l++]);
+    } else {
+      res.push(arr2[r++]);
+    }
+  }
+  if (l === arr1.length) {
+    res = [...res, ...arr2.slice(r)];
+  } else {
+    res = [...res, ...arr1.slice(l)];
+  }
+  return res;
+}
+
+// merge 2 sorted linkedlists
+
+var mergeTwoLists = function(l1, l2) {
+	if (l1 === null) {
+			return l2
+	}
+	if (l2 === null) {
+			return l1;
+	}
+	let tempNode = new ListNode();
+	let runner = tempNode;
+	while (l1 && l2) {
+			if (l1.val < l2.val) {
+					runner.next = l1;
+					l1 = l1.next;
+			} else {
+					runner.next = l2;
+					l2 = l2.next;
+			}
+			runner = runner.next;
+	}
+	if (l1) {
+			runner.next = l1;
+	}
+	if (l2) {
+			runner.next = l2;
+	}
+	return tempNode.next;
+};
+
