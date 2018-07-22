@@ -13,3 +13,6 @@ const encrypt = (input, key) => {
 	}
 	return result;
 }
+
+// working version with UI on Jsfiddle
+https://jsfiddle.net/valkyris/ek1j5h02/131/
