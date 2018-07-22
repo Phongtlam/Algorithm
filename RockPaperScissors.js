@@ -61,4 +61,50 @@ var RPSDynamic = (n) => {
   return res;
 }
 
-console.log(RPSDynamic(5))
+// The more difficult version can be, rolling an n sided dice to match k sum for x number of rounds
+
+function diceRoll(numRoll, sum, numSide) {
+  const dice = generateDice(numSide);
+  const result = [];
+
+  function DFS(round, diceLeft) {
+    if (diceLeft === 0) {
+      if (reducer(round) === sum) {
+        result.push(round);
+      }
+      return;
+    }
+    for (let i = 0; i < dice.length; i++) {
+      DFS(round.concat(dice[i]), diceLeft - 1);
+    }
+  }
+
+  DFS([], numRoll);
+  return result;
+}
+
+function generateDice(n) {
+  let dice = [];
+  for (let i = 1; i <= n; i++) {
+    dice.push(i);
+  }
+  return dice;
+}
+
+function reducer(array) {
+  return array.reduce((sum, el) => {
+    return sum += el;
+  }, 0)
+}
+
+// truncated version to generate all possible combinations of dice rolls
+function diceRoll(entry, remaining, roll) {
+  if (remaining === 0) {
+    entry.push(roll);
+    return;
+  }
+  for (let i = 1; i <= 6; i++) {
+    diceRoll(entry, remaining - 1, roll.concat(i))
+  }
+  return entry
+}

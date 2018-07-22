@@ -15,8 +15,7 @@ var fibonacciRecursive = (num) => {
 // We utilize a hash table for lookup here. If the value is already solved, we can
 // instantly return that value rather than having to recalculate the output
 
-var fibonacciMemoize = (num, memo) => {
-  memo = memo || {};
+var fibonacciMemoize = (num, memo = {}) => {
 
   if (memo[num]) return memo[num];
   if (num <= 1) return 1;

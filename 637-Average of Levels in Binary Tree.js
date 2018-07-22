@@ -39,3 +39,29 @@ var averageOfLevels = function(root) {
   }
   return res;
 };
+
+// another way
+var averageOfLevels = function(root) {
+	var result = [];
+	
+	function DFS(node, i) {
+			if (node) {
+					if (result[i] === undefined) {
+							result[i] = [node.val]
+					} else {
+							result[i].push(node.val)
+					}
+					DFS(node.left, i+1);
+					DFS(node.right, i+1);
+			}
+	}
+	DFS(root, 0);
+	return result.map( el => el.reduce((sum, one, i) => {
+			sum += one;
+			if (i === el.length - 1) {
+					return sum / (i + 1);
+			} else {
+					return sum;
+			}
+	}, 0))
+};
