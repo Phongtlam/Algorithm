@@ -15,28 +15,45 @@
 // ]
 
 var threeSum = function(nums) {
-  let sorted = nums.sort((a, b) => a - b);
-  let result = [];
-  for (let i = 0; i < sorted.length - 1; i++) {
-		// important check here to remove duplicates
-    if (i === 0 || sorted[i] !== sorted[i - 1]) {
-			let l = i + 1;
-			let r = sorted.length - 1;
+	if (nums.length < 3) return [];
+	let result = [];
+
+	// sort by ascending
+	nums = nums.sort((a, b) => a - b);
+
+	// we now need to loop from 0 to index before the last, since last 1 is checked via r below
+	for (let i = 0; i < nums.length - 2; i++) {
+
+			// optional for performance, if the current sorted value is greater than sum, there is no need to check anymore
+			if (nums[i] > 0) {
+				return result;
+			}
+
+			// this is to remove duplicate in i idx bound
+			if (nums[i] === nums[i - 1]) {
+					continue;
+			}
+
+			// repeat 2sum strategy
+			let l =  i + 1;
+			let r = nums.length - 1;
 			while (l < r) {
-				let sum = sorted[i] + sorted[l] + sorted[r];
-				if (sum === 0) {
-					result.push([ sorted[i], sorted[l], sorted[r] ]);
-					while (l < r && sorted[l] === sorted[l + 1]) l++;
-					while (l < r && sorted[r] === sorted[r - 1]) r--;
-					l++;
-					r--;
-				} else if (sum > 0) {
-					r--;
-				} else {
-					l++;
-				}
-			}  
-		}
-  }
-  return result;
+					if (nums[i] + nums[l] + nums[r] > 0) {
+							r--;
+					} else if (nums[i] + nums[l] + nums[r] < 0) {
+							l++;
+					} else {
+							result.push([nums[i], nums[l], nums[r]]);
+							// we need these 2 while loops to get rid off duplicates with lower and upper bounds
+							while (l < r && nums[l] === nums[l + 1]) l++;
+							while (l < r && nums[r] === nums[r - 1]) r--;
+
+							// after that we still need to close down the lower and upperbound
+							l++;
+							r--;
+					}
+			}
+	}
+	
+	return result;
 };
