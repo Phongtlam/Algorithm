@@ -41,15 +41,20 @@
 // || conditional. 
 
 var isSubtree = function(s, t) {
-  if (!s || !t) return false;
+	// base case conditions
+	if (!s && !t) return true;
+	if (!s || !t) return false;
+	// if s === t then they are the same tree
+	if (isSame(s, t)) return true;
 
-  function DFS(s, t) {
-      if (!s && !t) return true;
-      if (!s || !t) return false;
-      if (s.val !== t.val) return false;
-      return DFS(s.left, t.left) && DFS(s.right, t.right);
-  }
-
-  if (DFS(s, t)) return true;
-  return isSubtree(s.left, t) || isSubtree(s.right, t);
+	// run recursion on left and right branches of s comparing to t
+	return isSubtree(s.left, t) || isSubtree(s.right, t)
 };
+
+
+// this is a function is check if 2 trees are identical
+function isSame(s, t) {
+	if (!s && !t) return true;
+	if (!s || !t) return false;
+	return s.val === t.val && isSame(s.left, t.left) && isSame(s.right, t.right);
+}

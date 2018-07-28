@@ -70,10 +70,10 @@ var climbStairs = (n) => {
   return res;
 };
 
-var climbStairsSeries = (n) => {
-  var res = [1,2];
-  for (var i=2; i<n; i++) {
-    res[i] = res[i-1] + res[i-2];
-  }
-  return res;
-}
+var climbStairs = function(n) {
+	let climbs = [1, 2]
+	for (let i = 2; i < n; i++) {
+			climbs[i] = climbs[i-1] + climbs[i-2];
+	}
+	return climbs[n - 1];
+};
