@@ -64,11 +64,11 @@ function generateDictionary(words) {
 			let word = words[i];
 			for(let j = 0; j < word.length; j++) {
 					let substr = word.substring(0, j + 1);
-					dict[substr] = true;
+					if (dict[substr] === undefined) {
+							dict[substr] = true;
+					}
 			}
-	}
-	for (let i = 0; i < words.length; i++) {
-			dict[ words[i] ] = words[i];
+			dict[word] = word;
 	}
 	return dict;
 }
