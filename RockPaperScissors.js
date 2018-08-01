@@ -98,13 +98,15 @@ function reducer(array) {
 }
 
 // truncated version to generate all possible combinations of dice rolls
-function diceRoll(entry, remaining, roll) {
-  if (remaining === 0) {
+function diceRoll(numRoll, roll = [], entry = []) {
+  if (numRoll === 0) {
     entry.push(roll);
     return;
   }
   for (let i = 1; i <= 6; i++) {
-    diceRoll(entry, remaining - 1, roll.concat(i))
+    diceRoll(numRoll - 1, roll.concat(i), entry)
   }
   return entry
 }
+
+// Similar problems to these are subsets, permutations and combination sum
