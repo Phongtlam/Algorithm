@@ -35,7 +35,8 @@ var combinationSum2 = function(candidates, target) {
             return;
         }
         for (let i = start; i < candidates.length; i++) {
-            if (i > start && candidates[i] === candidates[i - 1]) continue;
+						if (i > start && candidates[i] === candidates[i - 1]) continue;
+						// cannot reuse i since only 1 index at a time
             backtrack(current.concat(candidates[i]), sum - candidates[i], i + 1);
         }
     }

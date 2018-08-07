@@ -40,11 +40,11 @@ function solver(n) {
   return result;
 }
 
-[ [ Position { row: 0, col: 1 },
-    Position { row: 1, col: 3 },
-    Position { row: 2, col: 0 },
-    Position { row: 3, col: 2 } ],
-  [ Position { row: 0, col: 2 },
-    Position { row: 1, col: 0 },
-    Position { row: 2, col: 3 },
-    Position { row: 3, col: 1 } ] ]
+// [ [ Position { row: 0, col: 1 },
+//     Position { row: 1, col: 3 },
+//     Position { row: 2, col: 0 },
+//     Position { row: 3, col: 2 } ],
+//   [ Position { row: 0, col: 2 },
+//     Position { row: 1, col: 0 },
+//     Position { row: 2, col: 3 },
+//     Position { row: 3, col: 1 } ] ]

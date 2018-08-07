@@ -34,6 +34,7 @@ var combinationSum = function(candidates, target) {
             return;
         }
         for (let i = start; i < candidates.length; i++) {
+					// since we can reuse numbers, we can reuse i for next iteration
             backtrack([...current, candidates[i]], target - candidates[i], i);
         }
     }

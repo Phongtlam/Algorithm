@@ -28,12 +28,11 @@ var fourSum = function(nums, target) {
 	const sorted = nums.sort((a, b) => a - b);
 	let result = [];
 	
-	for (let i = 0; i < sorted.length; i++) {
-			
+	for (let i = 0; i < sorted.length - 3; i++) {
 			let diff = target - sorted[i];
 			
-			for (let j = i + 1; j < sorted.length; j++) {
-					if (j > i + 1 && sorted[j] === sorted[j - 1]) continue;
+			for (let j = i + 1; j < sorted.length - 2; j++) {
+					// if (j > i + 1 && sorted[j] === sorted[j - 1]) continue;
 
 					let l = j + 1;
 					let r = sorted.length - 1;
@@ -46,7 +45,6 @@ var fourSum = function(nums, target) {
 							if (currSum === diff) {
 									result.push([ sorted[i], sorted[j], sorted[l], sorted[r] ]);
 									// these 2 while loops are used to get rid off dups in upper and lower bounds in the 3sum
-									while (sorted[l] === sorted[l + 1]) l++;
 									while (sorted[r] === sorted[r - 1]) r--;
 									// to close down the range after finding first target
 									l++;
@@ -58,10 +56,10 @@ var fourSum = function(nums, target) {
 							}
 					}
 					// this is to get rid off the dup in j
-					while(j + 1 < sorted.length && sorted[j + 1] === sorted[j]) j++;
+					while(sorted[j + 1] === sorted[j]) j++;
 			}
 			// this is to get rid off the dup in i
-			while(i + 1 < sorted.length && sorted[i + 1] === sorted[i]) i++;
+			while(sorted[i + 1] === sorted[i]) i++;
 	}
 	return result;
 	
