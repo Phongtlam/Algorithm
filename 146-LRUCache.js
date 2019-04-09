@@ -32,59 +32,77 @@
 // we will use a doubly linked list. My implementation involves having head and tail as
 // pseudo nodes with pointers, that way it will be simple with removal and insertion.
 
-function Node(key, val) {
-    this.key = key;
-    this.val = val;
-    this.prev = this.next = null;
+// class Node for doubly linked list
+class Node {
+	constructor(key, value) {
+			this.key = key;
+			this.value = value;
+			this.next = this.prev = null;
+	}
 }
 
-var LRUCache = function(capacity) {
-    this.capacity = capacity;
-    this.hash = {};
-    this.head = { next: null }
-    this.tail = { prev: null }
-    this.head.next = this.tail;
-    this.tail.prev = this.head;
-};
+class LRUCache {
+	constructor(capacity) {
+			this.capacity = capacity;
+			this.hash = {};
+			// blank nodes for head and tail
+			this.head = new Node();
+			this.tail = new Node();
+			// at the start tail and head will be connected
+			this.head.next = this.tail;
+			this.tail.prev = this.head;
+	}
+	
+	put(key, value) {
+			let node = this.hash[key];
+			// if node does not exist, we need to make a new node and decrease capacity
+			if (node === undefined) {
+					this.capacity -= 1;
+					node = this.hash[key] = new Node(key, value);
+			// else we just need to change node value to new value
+			} else {
+					node.value = value;
+			}
+			// move node to tail since it's just accessed recently
+			this.pushNodeToTail(node);
 
-LRUCache.prototype.get = function(key) {
-    var currNode = this.hash[key];
-    if (currNode === undefined) return -1;
-    if (currNode.next !== this.tail) {
-        currNode.prev.next = currNode.next;
-        currNode.next.prev = currNode.prev;
-        currNode.next = this.tail;
-        currNode.prev = this.tail.prev;
-        this.tail.prev.next = currNode;
-        this.tail.prev = currNode;
-    }
-    return currNode.val;
-};
-
-LRUCache.prototype.put = function(key, val) {
-    if (this.hash[key] === undefined) {
-      this.capacity -= 1;
-      this.hash[key] = new Node(key, val);
-      var newNode = this.hash[key];
-    } else {
-      this.hash[key].val = val;
-      newNode = this.hash[key];
-      newNode.prev.next = newNode.next;
-      newNode.next.prev = newNode.prev;
-      newNode.next = newNode.prev = null;
-    }
-    newNode.next = this.tail;
-    newNode.prev = this.tail.prev;
-
-    this.tail.prev.next = newNode;
-    this.tail.prev = newNode;
-    if (this.capacity < 0) {
-        var delK = this.head.next.key;
-        this.head.next = this.head.next.next;
-        this.head.next.prev = this.head;
-
-        delete this.hash[delK];
-
-        this.capacity++;
-    }
-};
+			// if capacity drops below 0, we need to remove node at head
+			if (this.capacity < 0) {
+					// get deleted key to remove and delete it from the hash
+					let delKey = this.head.next.key;
+					delete this.hash[delKey];
+					
+					// remove least recent used node from head, attach head.next to the value
+					this.head.next = this.head.next.next;
+					this.head.next.prev = this.head;
+					
+					// increase capacity back since we just remove a node
+					this.capacity++;
+			}
+	}
+	
+	get(key) {
+			if (this.hash[key] === undefined) return -1;
+			const node = this.hash[key];
+			
+			// only need to do this if node is not already at tail end
+			if (node.next !== this.tail) {
+					this.pushNodeToTail(node);
+			}
+			return node.value;
+	}
+	
+	// helper method to put new nodes sor existing nodes to end of the list
+	pushNodeToTail(node) {
+			// if node is already in the list, we reattach its prev and next node before removal
+			if (node.next && node.prev) {
+					node.next.prev = node.prev;
+					node.prev.next = node.next;
+			}
+			// attach node to tail
+			node.next = this.tail;
+			node.prev = this.tail.prev;
+			this.tail.prev.next = node;
+			this.tail.prev = node;
+	}
+}

@@ -27,7 +27,7 @@ var subsetsWithDup = function(nums) {
         for (let i = start; i < nums.length; i++) {
 						// we need to skip (UNIQUE to subset 2)
             if (i > start && nums[i] === nums[i - 1]) continue;
-            DFS([...current, nums[i]], i + 1);
+            backtrack([...current, nums[i]], i + 1);
         }
     }
     
