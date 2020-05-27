@@ -22,14 +22,19 @@ App live at: https://phongtlam.github.io/github-ranking-react/
 
 ## Database Design - Cassandra
 ### repo (in redis/memcache):
-- PK: organization_name (varchar10), page, github_repo_id(uuid)
+- PK: github_repo_id(uuid), page
+- organization_name (varchar10)
 - commits (list<commit_ids>)
 - creation_time (timestamp)
 - stars_count (int)
 - forks_count (int)
 - language (varchar10)
 
-### comit (in redis/memcache):
+### organization
+- PK organization_name
+- repo_ids(list<uuid>)
+
+### commit (in redis/memcache):
 - PK: commit_id
 - content
 - commit_message (string)
