@@ -1,0 +1,61 @@
+Non-overlapping Intervals
+Meeting Rooms II 
+Construct Binary Tree from Preorder and Inorder Traversal
+Implement Trie (Prefix Tree) 
+Add and Search Word
+Word Search II
+https://leetcode.com/problems/critical-connections-in-a-network/
+Network Delay Time
+Most Common Word
+https://leetcode.com/problems/remove-invalid-parentheses/
+https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
+https://leetcode.com/problems/find-all-anagrams-in-a-string/
+https://leetcode.com/problems/subarray-sum-equals-k/
+https://leetcode.com/problems/bulls-and-cows/
+https://leetcode.com/problems/walls-and-gates/
+https://leetcode.com/problems/daily-temperatures/
+https://leetcode.com/problems/target-sum/
+https://leetcode.com/problems/decode-string/
+https://leetcode.com/problems/k-th-symbol-in-grammar/
+https://leetcode.com/problems/search-a-2d-matrix-ii/
+https://leetcode.com/problems/n-queens/
+https://leetcode.com/problems/robot-room-cleaner/
+
+DP:
+https://leetcode.com/problems/perfect-squares/submissions/
+
+
+Functional Requirements (Upload / Download / View, Search, Follow, News Feed)
+
+Non-functional Requirements (Read Heavy, Availability, Latency, Consistency, Durability)
+
+Capacity Estimation and Constraints
+
+High Level System Design
+
+Database Schema
+
+Data Size Estimation
+
+Data Store
+
+Reliability and Redundancy (Connection Limit, Isolate Reads and Writes, Retention, Replicas, Load Balancing)
+
+Data Sharding / Partitioning (Hot Partitions, Uniform Distribution, Consistent Hashing)
+
+Sequence Generation (Single Point of Failure, Even Primary / Odd Secondary, Distributed Sequence Generation)
+
+Ranking and News Feed Generation (Pre-compute, Pull / Push / Hybrid, Sorting - Epoch + Sequence)
+
+Cache and Load Balancing (CDNs, Metadata Cache - Memcache, LRU, Target Hit Rate)
+
+Operational Excellence
+
+Design Concepts :
+1) System Design Introduction
+2) Horizontal and Vertical Scaling
+3) Load Balancers
+4) Caching
+5) Database Sharding
+6) Consistent Hashing
+7) No SQL Databases

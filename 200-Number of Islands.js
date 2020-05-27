@@ -37,7 +37,7 @@ var numIslands = function(grid) {
     return counter;
 };
 
-function sinkIsland(grid, i j) {
+function sinkIsland(grid, i, j) {
     if (i < grid.length || i >= grid.length || grid[i][j] === '0') return;
 		grid[i][j] === '0';
 		// dfs out from current spot until hitting 0 or out of bounds, 4 directions

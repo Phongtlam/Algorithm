@@ -46,7 +46,9 @@ var threeSum = function(nums) {
 							result.push([nums[i], nums[l], nums[r]]);
 							// we need these 2 while loops to get rid off duplicates with lower and upper bounds
 							// while (l < r && nums[l] === nums[l + 1]) l++;
-							while (l < r && nums[r] === nums[r - 1]) r--;
+							while (l < r && nums[r] === nums[r - 1]) {
+								r--;
+							}
 
 							// after that we still need to close down the lower and upperbound
 							l++;
@@ -57,3 +59,5 @@ var threeSum = function(nums) {
 	
 	return result;
 };
+
+console.log('what is ?', threeSum([1,2,-2,-1]))
