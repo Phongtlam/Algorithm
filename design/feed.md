@@ -1,7 +1,7 @@
 Design Curated Feed: Design a curated feed to display cards tagged by merchants and PMs. Ingestion can be done at off hours (once a day).
 website at: https://www.walmart.com/home/decorating-ideas?
 
-##Functional Reqs:
+## Functional Reqs:
 - Display a list of cards tagged by marketers
 - User should be able to filter cards by some attributes
 - Getting new cards daily
@@ -9,40 +9,40 @@ website at: https://www.walmart.com/home/decorating-ideas?
 - Cards never expire unless removed
 Extras: telemetry
 
-##Capacity:
+## Capacity:
 - start out with 200 cards
 - 20 new cards a day
 - 10kb/card > 200 kb/day > 100GB / year
 - Images on the card can be store on a file storage system (S3)
 
-##Traffic estimate:
+## Traffic estimate:
 - 100 req/second displaying 40 cards at a time > 40000 kb/second
 - Read heavy - cache 20% of total cards > 20GB/year 
 
-##APIs
+## APIs
 - get(attributes_values(object), page(string))
 - insert(card_id(uuid), attributes_values, creation_time)
 - delete(card_id(uuid))
 
-##Database Design - Cassandra
-###card:
+## Database Design - Cassandra
+### card:
 - PK: card_id (uuid)
 - creation_time (datetime)
 - content (varchar)
 - data_source (varchar16)
 
-###attribute_values:
+### attribute_values:
 - PK: (attribute, value) as composite keys, card_id
 - data_source (varchar16)
 - creation_time
 
-###usage_metric:
+### usage_metric:
 - PK: time_uuid, card_id
 - num_clicks
 
 Cassandra DB due to high availability and partition tolerance
 
-##Basic Design
+## Basic Design
 client > web server > cache (LRU) > DB
 
 - Client hit Web server
