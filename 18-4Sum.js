@@ -37,7 +37,7 @@ var fourSum = function(nums, target) {
 					let l = j + 1;
 					let r = sorted.length - 1;
 					while (l < r) {
-							if (l > j + 1 && sorted[l] == sorted[l - 1]) {
+							if (l > j + 1 && sorted[l] === sorted[l - 1]) {
 									l++;
 									continue;
 							}
